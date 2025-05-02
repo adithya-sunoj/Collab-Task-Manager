@@ -1,0 +1,141 @@
+/* === Theme Variables === */
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --surface: #fff;
+    --border: #d1d5db;
+    --shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+/* === Base Styles === */
+body {
+    font-family: 'Segoe UI', 'Open Sans', Arial, sans-serif;
+    background: #f4f6fb;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+h2, h3, h4 {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover, a:focus {
+    color: var(--primary-dark);
+    text-decoration: underline;
+    outline: none;
+}
+
+/* === Card Enhancements === */
+.card {
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    border: none;
+}
+
+/* === Form Enhancements === */
+input[type="text"], input[type="password"], select, textarea {
+    border-radius: 6px !important;
+    border: 1px solid var(--border) !important;
+    background: #f9fafb;
+    transition: border 0.2s, box-shadow 0.2s;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+    border: 1.5px solid var(--primary) !important;
+    outline: 2px solid var(--primary-dark);
+    outline-offset: 1px;
+    box-shadow: 0 0 0 0.15rem rgba(59,130,246,0.15);
+}
+
+button, .btn {
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+    color: #fff !important;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+button:hover, .btn:hover, button:focus, .btn:focus {
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+    color: #fff !important;
+    box-shadow: 0 2px 12px rgba(59,130,246,0.12);
+    outline: none;
+}
+
+/* === Table Enhancements === */
+.table {
+    background: #f9fafb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background: #e5e7eb;
+    color: #374151;
+    font-weight: 600;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.table input, .table select {
+    font-size: 0.98rem;
+    padding: 6px 8px;
+    margin-bottom: 0;
+}
+
+.table-responsive {
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    background: var(--surface);
+    margin-bottom: 1.5rem;
+}
+
+/* === Flash Messages === */
+.alert, .flash-message, .error-message {
+    animation: fadeIn 0.6s cubic-bezier(.4,0,.2,1);
+    border-radius: 6px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* === Utility Classes === */
+.text-center { text-align: center !important; }
+.mt-2 { margin-top: 1rem !important; }
+.w-100 { width: 100% !important; }
+
+/* === Responsive Enhancements === */
+@media (max-width: 900px) {
+    .container, .card {
+        max-width: 98vw;
+        padding: 16px 2vw;
+    }
+    .table, th, td {
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container, .card {
+        padding: 10px 2vw;
+    }
+    .table, th, td {
+        font-size: 0.95rem;
+    }
+    .card {
+        margin-bottom: 16px;
+    }
+}
