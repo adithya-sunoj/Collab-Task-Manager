@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Task Manager</title>
+</head>
+<body>
+    <h2>Welcome, {{ current_user.username }}!</h2>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <h3>Your Tasks</h3>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <form method="POST" action="{{ url_for('update_task', task_id=task.id) }}">
+                <td><input type="text" name="title" value="{{ task.title }}" required></td>
+                <td><input type="text" name="description" value="{{ task.description }}"></td>
+                <td><input type="text" name="due_date" value="{{ task.due_date }}"></td>
+                <td>
+                    <select name="status">
+                        <option value="pending" {% if task.status == 'pending' %}selected{% endif %}>Pending</option>
+                        <option value="completed" {% if task.status == 'completed' %}selected{% endif %}>Completed</option>
+                    </select>
+                </td>
+                <td>
+                    <button type="submit">Update</button>
+            </form>
+            <form method="POST" action="{{ url_for('delete_task', task_id=task.id) }}" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+                </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h3>Add New Task</h3>
+    <form method="POST" action="{{ url_for('add_task') }}">
+        <label>Title:</label><br>
+        <input type="text" name="title" required><br>
+        <label>Description:</label><br>
+        <input type="text" name="description"><br>
+        <label>Due Date (e.g., 2025-05-02 14:00):</label><br>
+        <input type="text" name="due_date"><br><br>
+        <button type="submit">Add Task</button>
+    </form>
+    {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+    {% endfor %}
+</body>
+</html>
